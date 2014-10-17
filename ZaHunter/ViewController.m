@@ -18,6 +18,8 @@
 @property CLLocation *usersLocation;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property NSMutableArray *locatedPizzaPlaces;
+
 @end
 
 @implementation ViewController
@@ -31,6 +33,7 @@
     [self.locationManager requestWhenInUseAuthorization];
     //[self.locationManager startUpdatingLocation];
     self.locationManager.delegate = self;
+    self.locatedPizzaPlaces = [NSMutableArray new];
 }
 
 - (IBAction)onFindPizzaButtonPressed:(id)sender
@@ -88,7 +91,10 @@
 {
     for (PizzaPlace *tempPizzaPlace in self.unorderedPizzaPlaces)
     {
-        CLLocation *firstLocation = [[CLLocation alloc] initWithLatitude:tempPizzaPlace.addressCoordinate.coordinate.latitude longitude:tempPizzaPlace.addressCoordinate.coordinate.longitude];
+//        CLLocation *firstLocation = [[[CLLocation alloc] initWithLatitude:tempPizzaPlace.addressCoordinate.coordinate.latitude longitude:tempPizzaPlace.addressCoordinate.coordinate.longitude] autorelease];
+//        CLLocation *secondLocation = [[[CLLocation alloc] initWithLatitude:self.usersLocation.coordinate.latitude longitude:self.usersLocation.coordinate.longitude] autorelease];
+
+        CLLocation *firstLocation = [[CLLocation alloc]initWithLatitude:tempPizzaPlace.addressCoordinate.coordinate.latitude longitude:tempPizzaPlace.addressCoordinate.coordinate.longitude];
         CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:self.usersLocation.coordinate.latitude longitude:self.usersLocation.coordinate.longitude];
 
         CLLocationDistance newDistance = [secondLocation distanceFromLocation:firstLocation];
@@ -96,8 +102,10 @@
         pizzaPlace.nameOfPlace = tempPizzaPlace.nameOfPlace;
         pizzaPlace.addressCoordinate = tempPizzaPlace.addressCoordinate;
         pizzaPlace.distanceFromUser = newDistance;
-        [self.unorderedPizzaPlaces addObject:pizzaPlace];
-        NSLog(@"Distance gotten from user section: %@", self.unorderedPizzaPlaces);
+        //fill a different mutable array here; not the one youre enumerating through
+        [self.locatedPizzaPlaces addObject:pizzaPlace];
+//        [self.unorderedPizzaPlaces addObject:pizzaPlace];
+        NSLog(@"Distance gotten from user section: %@", self.locatedPizzaPlaces);
     }
     //go through the unorderedPizzaPlaces array, find distance for every one and then assign to my new data point, then call a new method that will order the array
 }
@@ -107,7 +115,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCellID" forIndexPath:indexPath];
-    PizzaPlace *place = [self.unorderedPizzaPlaces objectAtIndex:indexPath.row];
+//    PizzaPlace *place = [self.unorderedPizzaPlaces objectAtIndex:indexPath.row];
+    PizzaPlace *place = [self.locatedPizzaPlaces objectAtIndex:indexPath.row];
     cell.textLabel.text = place.nameOfPlace;
     //cell.detailTextLabel.text = place.addressCoordinate;
     //once get the array working, then I can add an if statement here saying what the color or checkmark should be depending on the selected and color properties I create
@@ -121,7 +130,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.unorderedPizzaPlaces.count;
+//    return self.unorderedPizzaPlaces.count;
+    return self.locatedPizzaPlaces.count;
 }
 
 
