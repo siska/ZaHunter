@@ -101,7 +101,7 @@
         PizzaPlace *pizzaPlace = [[PizzaPlace alloc] init];
         pizzaPlace.nameOfPlace = tempPizzaPlace.nameOfPlace;
         pizzaPlace.addressCoordinate = tempPizzaPlace.addressCoordinate;
-        pizzaPlace.distanceFromUser = newDistance;
+        pizzaPlace.distanceFromUser = newDistance * 0.000621371;
         //fill a different mutable array here; not the one youre enumerating through
         [self.locatedPizzaPlaces addObject:pizzaPlace];
 //        [self.unorderedPizzaPlaces addObject:pizzaPlace];
@@ -118,7 +118,7 @@
     PizzaPlace *place = [self.locatedPizzaPlaces objectAtIndex:indexPath.row];
     cell.textLabel.text = place.nameOfPlace;
 
-    NSString *distanceString = [NSString stringWithFormat:@"%f meters away from you.", place.distanceFromUser];
+    NSString *distanceString = [NSString stringWithFormat:@"%f miles away from you.", place.distanceFromUser];
     cell.detailTextLabel.text = distanceString;
 
     return cell;
