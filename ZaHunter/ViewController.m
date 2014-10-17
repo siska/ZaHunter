@@ -72,7 +72,7 @@
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error)
     {
         NSArray *arrayOfPizzaPlaces = response.mapItems;
-        //NSLog(@"%@", arrayOfPizzaPlaces);
+        NSLog(@"arrayOfPizzaPlaces%@", arrayOfPizzaPlaces);
         for (MKMapItem *mapItem in arrayOfPizzaPlaces)
         {
             PizzaPlace *pizzaPlace = [[PizzaPlace alloc] init];
@@ -83,7 +83,7 @@
             [self getDistanceFromUser];
         }
         NSLog(@"%@",arrayOfPizzaPlaces);
-        [self.tableView reloadData];
+        [self orderTheArraysBasedOnDistance];
     }];
 }
 
@@ -108,6 +108,13 @@
         NSLog(@"Distance gotten from user section: %@", self.locatedPizzaPlaces);
     }
     //go through the unorderedPizzaPlaces array, find distance for every one and then assign to my new data point, then call a new method that will order the array
+}
+
+- (void)orderTheArraysBasedOnDistance
+{
+    [self.locatedPizzaPlaces sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"distanceFromUser" ascending:YES]]];
+    [self.tableView reloadData];
+
 }
 
 //now you just need to order the array based on unorderedPizzaPlaces distanceFromUser - call that in tempPizzaPlace and then do the tableview stuff
