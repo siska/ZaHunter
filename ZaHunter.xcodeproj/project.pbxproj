@@ -14,6 +14,9 @@
 		1210AF3119EF09A100BBAC4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1210AF3019EF09A100BBAC4B /* Images.xcassets */; };
 		1210AF3419EF09A100BBAC4B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1210AF3219EF09A100BBAC4B /* LaunchScreen.xib */; };
 		1210AF4019EF09A100BBAC4B /* ZaHunterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1210AF3F19EF09A100BBAC4B /* ZaHunterTests.m */; };
+		1210AF4A19EF11C600BBAC4B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1210AF4919EF11C600BBAC4B /* MapKit.framework */; };
+		1210AF4C19EF11CC00BBAC4B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1210AF4B19EF11CC00BBAC4B /* CoreLocation.framework */; };
+		1210AF4F19EF220100BBAC4B /* PizzaPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 1210AF4E19EF220100BBAC4B /* PizzaPlace.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,10 @@
 		1210AF3919EF09A100BBAC4B /* ZaHunterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZaHunterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1210AF3E19EF09A100BBAC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1210AF3F19EF09A100BBAC4B /* ZaHunterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZaHunterTests.m; sourceTree = "<group>"; };
+		1210AF4919EF11C600BBAC4B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1210AF4B19EF11CC00BBAC4B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1210AF4D19EF220100BBAC4B /* PizzaPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PizzaPlace.h; sourceTree = "<group>"; };
+		1210AF4E19EF220100BBAC4B /* PizzaPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PizzaPlace.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1210AF4C19EF11CC00BBAC4B /* CoreLocation.framework in Frameworks */,
+				1210AF4A19EF11C600BBAC4B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +75,8 @@
 				1210AF2219EF09A100BBAC4B /* ZaHunter */,
 				1210AF3C19EF09A100BBAC4B /* ZaHunterTests */,
 				1210AF2119EF09A100BBAC4B /* Products */,
+				1210AF4B19EF11CC00BBAC4B /* CoreLocation.framework */,
+				1210AF4919EF11C600BBAC4B /* MapKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +96,8 @@
 				1210AF2819EF09A100BBAC4B /* AppDelegate.m */,
 				1210AF2A19EF09A100BBAC4B /* ViewController.h */,
 				1210AF2B19EF09A100BBAC4B /* ViewController.m */,
+				1210AF4D19EF220100BBAC4B /* PizzaPlace.h */,
+				1210AF4E19EF220100BBAC4B /* PizzaPlace.m */,
 				1210AF2D19EF09A100BBAC4B /* Main.storyboard */,
 				1210AF3019EF09A100BBAC4B /* Images.xcassets */,
 				1210AF3219EF09A100BBAC4B /* LaunchScreen.xib */,
@@ -221,6 +234,7 @@
 			files = (
 				1210AF2C19EF09A100BBAC4B /* ViewController.m in Sources */,
 				1210AF2919EF09A100BBAC4B /* AppDelegate.m in Sources */,
+				1210AF4F19EF220100BBAC4B /* PizzaPlace.m in Sources */,
 				1210AF2619EF09A100BBAC4B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
