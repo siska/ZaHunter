@@ -72,7 +72,7 @@
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error)
     {
         NSArray *arrayOfPizzaPlaces = response.mapItems;
-        NSLog(@"arrayOfPizzaPlaces%@", arrayOfPizzaPlaces);
+        NSLog(@"arrayOfPizzaPlaces before iteration: %@", arrayOfPizzaPlaces);
         for (MKMapItem *mapItem in arrayOfPizzaPlaces)
         {
             PizzaPlace *pizzaPlace = [[PizzaPlace alloc] init];
@@ -80,10 +80,9 @@
             pizzaPlace.addressCoordinate = mapItem.placemark;
             //NSLog(@"%@", pizzaPlace.nameOfPlace);
             [self.unorderedPizzaPlaces addObject:pizzaPlace];
-            [self getDistanceFromUser];
         }
-        NSLog(@"%@",arrayOfPizzaPlaces);
-        [self orderTheArraysBasedOnDistance];
+        NSLog(@"arrayOfPizzaPlaces after iteration: %@",arrayOfPizzaPlaces);
+        [self getDistanceFromUser];
     }];
 }
 
@@ -91,9 +90,6 @@
 {
     for (PizzaPlace *tempPizzaPlace in self.unorderedPizzaPlaces)
     {
-//        CLLocation *firstLocation = [[[CLLocation alloc] initWithLatitude:tempPizzaPlace.addressCoordinate.coordinate.latitude longitude:tempPizzaPlace.addressCoordinate.coordinate.longitude] autorelease];
-//        CLLocation *secondLocation = [[[CLLocation alloc] initWithLatitude:self.usersLocation.coordinate.latitude longitude:self.usersLocation.coordinate.longitude] autorelease];
-
         CLLocation *firstLocation = [[CLLocation alloc]initWithLatitude:tempPizzaPlace.addressCoordinate.coordinate.latitude longitude:tempPizzaPlace.addressCoordinate.coordinate.longitude];
         CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:self.usersLocation.coordinate.latitude longitude:self.usersLocation.coordinate.longitude];
 
@@ -102,19 +98,18 @@
         pizzaPlace.nameOfPlace = tempPizzaPlace.nameOfPlace;
         pizzaPlace.addressCoordinate = tempPizzaPlace.addressCoordinate;
         pizzaPlace.distanceFromUser = newDistance * 0.000621371;
+
         //fill a different mutable array here; not the one youre enumerating through
         [self.locatedPizzaPlaces addObject:pizzaPlace];
-//        [self.unorderedPizzaPlaces addObject:pizzaPlace];
         NSLog(@"Distance gotten from user section: %@", self.locatedPizzaPlaces);
     }
-    //go through the unorderedPizzaPlaces array, find distance for every one and then assign to my new data point, then call a new method that will order the array
+    [self orderTheArraysBasedOnDistance];
 }
 
 - (void)orderTheArraysBasedOnDistance
 {
     [self.locatedPizzaPlaces sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"distanceFromUser" ascending:YES]]];
     [self.tableView reloadData];
-
 }
 
 //now you just need to order the array based on unorderedPizzaPlaces distanceFromUser - call that in tempPizzaPlace and then do the tableview stuff
