@@ -13,7 +13,6 @@
 
 @interface ViewController () <CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 @property CLLocationManager *locationManager;
-@property NSMutableArray *orderedPizzaPlaces;
 @property NSMutableArray *unorderedPizzaPlaces;
 @property CLLocation *usersLocation;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -26,7 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.orderedPizzaPlaces = [[NSMutableArray alloc] init];
     self.unorderedPizzaPlaces = [[NSMutableArray alloc] init];
 
     self.locationManager = [[CLLocationManager alloc] init];
@@ -38,6 +36,8 @@
 
 - (IBAction)onFindPizzaButtonPressed:(id)sender
 {
+    [self.unorderedPizzaPlaces removeAllObjects];
+    [self.locatedPizzaPlaces removeAllObjects];
     [self.locationManager startUpdatingLocation];
     NSLog(@"Button Pressed");
 }
