@@ -115,13 +115,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCellID" forIndexPath:indexPath];
-//    PizzaPlace *place = [self.unorderedPizzaPlaces objectAtIndex:indexPath.row];
     PizzaPlace *place = [self.locatedPizzaPlaces objectAtIndex:indexPath.row];
     cell.textLabel.text = place.nameOfPlace;
-    //cell.detailTextLabel.text = place.addressCoordinate;
-    //once get the array working, then I can add an if statement here saying what the color or checkmark should be depending on the selected and color properties I create
 
-    //cell.detailTextLabel.text = task.info;
+    NSString *distanceString = [NSString stringWithFormat:@"%f meters away from you.", place.distanceFromUser];
+    cell.detailTextLabel.text = distanceString;
 
     return cell;
 }
